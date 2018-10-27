@@ -1,5 +1,5 @@
 # CharlieplexCalc
-A Python script that calculates charlieplexing pinouts and login tables.
+A Python script that calculates charlieplexing pinouts and logic tables.
 
 Run the script with the desired number of LEDs to drive up to 999, and it will output the pinouts, logic table, and Ardunio code header to help you set up and program your CharliePlexed LEDs.
 
