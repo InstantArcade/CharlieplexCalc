@@ -57,6 +57,8 @@ Use the genetrated code in your Arduino project, and for each LED read the table
 
 Here's an example main loop()
 ```
+int pins[] = {8,7,6,5}; // Mapping of actual micro's pin numbers to the virtual pins
+
 void loop(){
   // cycle through the LEDs
   for(int l=0; l<numLeds; l++){
@@ -71,6 +73,6 @@ void loop(){
       } 
     }
   }
-  delay(4);
+  delay(40);
 }
 ```
