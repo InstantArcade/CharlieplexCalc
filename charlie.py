@@ -69,7 +69,7 @@ print "[You could drive a maximum of", (numPins*(numPins-1)), "LEDs with", numPi
 # EVEN 	-		+	
 # Led
 
-# Manual calculated
+# Manually calculated
 # 0*-1				+4			+6			+8			+10			+12
 # P0 > L 0-, L 1+, L 4-, L 5+, L10-, L11+, L18-, L19+, L28-, L29+, L40-, L41+
 
@@ -123,7 +123,6 @@ for pin in range( numPins ):
 	else:
 		pinstep = 2
 
-	# import pdb; pdb.set_trace()
 	while led < (numLeds):
 		if( reverse_polarity == 0 ):
 			if( led+1 >= numLeds ):
@@ -135,10 +134,8 @@ for pin in range( numPins ):
 				ledData[led+1].negPin = pin
 		else:
 			if( led+1 >= numLeds ):
-#				print "L{0}{1}".format(led+1,'-'),
 				print "{n:3d}{k}".format(n=led+1,k='-'),
 			else:
-#				print "L{0}{1} L{2}{3}".format(led+1,'-',led+2,'+'),
 				print "{n:3d}{x} {m:3d}{y}".format(n=led+1,x='-',m=led+2,y='+'),
 			if( led+1 < numLeds ):
 				ledData[led+1].posPin = pin
@@ -177,7 +174,6 @@ for led in range( numLeds ):
 # Output actual code for arduino
 #
 # Table looks like this...
-#
 #byte ledPins[][7] = {
 #  {2,1,0,2,2,2,2},
 #  };
@@ -190,7 +186,6 @@ print "byte	ledPins[]["+str(numPins)+"] ={"
 for led in range( numLeds ):
 	line = ""
 	print "	{",
-#	print "Led {num:3d}   >   ".format( num=led+1 ),
 	for pin in range ( numPins ):
 		if( ledData[led].posPin == pin ):
 			line += "1"
