@@ -11,7 +11,8 @@ e.g
 `> python charlie.py 12`
 
 ### Output
-```You need 4 pins to drive 12 LEDs
+```
+You need 4 pins to drive 12 LEDs
 [You could drive a maximum of 12 LEDs with 4 pins]
 
 Pin   1 >    1-   2+   5-   6+  11-  12+
