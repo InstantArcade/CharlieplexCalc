@@ -51,3 +51,26 @@ byte	ledPins[][4] ={
 	{ 1,2,2,0 },
 	};
 ```
+## Programming
+
+Use the genetrated code in your Arduino project, and for each LED read the table to determine the status of each pin where _0_ is _LOW_, _1_ is _HIGH_, and _2_ is configured for _INPUT_, use `pinMode()`.
+
+Here's an example main loop()
+```
+void loop(){
+  // cycle through the LEDs
+  for(int l=0; l<numLeds; l++){
+    for(int p=0; p<numPins; p++){
+      byte data = ledPins[l][p];
+      
+      if( data == 2 ){
+        pinMode( pins[p], INPUT );
+      }else{
+        pinMode( pins[p], OUTPUT );
+        digitalWrite( pins[p], data );
+      } 
+    }
+  }
+  delay(4);
+}
+```
