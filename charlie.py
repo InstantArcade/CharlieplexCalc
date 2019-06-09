@@ -7,13 +7,13 @@
 import sys
 
 if len(sys.argv) < 2:
-	print "Please speficy number of LEDs you want to drive"
+	print ("Please speficy number of LEDs you want to drive")
 	exit()
 
 numLeds = int(sys.argv[1]);
 
 if numLeds < 1 or numLeds > 1000:
-	print "Please speficy number of LEDs you want to drive between (1 and 1000)"
+	print ("Please speficy number of LEDs you want to drive between (1 and 1000)")
 	exit()
 
 # formula is n * (n-1)
@@ -23,9 +23,9 @@ numPins = 2
 while numPins*(numPins-1) < numLeds:
 	numPins+=1
 
-print ""
-print "You need", numPins, "pins to drive", numLeds, "LEDs"
-print "[You could drive a maximum of", (numPins*(numPins-1)), "LEDs with", numPins, "pins]"
+print ("")
+print ("You need", numPins, "pins to drive", numLeds, "LEDs")
+print ("[You could drive a maximum of", (numPins*(numPins-1)), "LEDs with", numPins, "pins]")
 
 # Each pair of pins is connected to two LEDs in reverse parallel to each other, e.g.
 #
@@ -109,8 +109,8 @@ ledData = [ LED() for i in range(numLeds)]
 
 # Print out the connections to leach LED
 for pin in range( numPins ):
-	print ""
-	print "Pin {n:3d} > ".format(n=pin+1), 
+	print ("")
+	print ("Pin {n:3d} > ".format(n=pin+1), end =" ")
 
 	reverse_polarity = 0
 	led = pin*(pin-1)
@@ -126,17 +126,17 @@ for pin in range( numPins ):
 	while led < (numLeds):
 		if( reverse_polarity == 0 ):
 			if( led+1 >= numLeds ):
-				print "{n:3d}{k}".format(n=led+1,k='+'),
+				print ("{n:3d}{k}".format(n=led+1,k='+'), end =" ")
 			else:
-				print "{n:3d}{x} {m:3d}{y}".format(n=led+1,x='+',m=led+2,y='-'),
+				print ("{n:3d}{x} {m:3d}{y}".format(n=led+1,x='+',m=led+2,y='-'), end =" ")
 			ledData[led].posPin = pin
 			if( led+1 < numLeds ):
 				ledData[led+1].negPin = pin
 		else:
 			if( led+1 >= numLeds ):
-				print "{n:3d}{k}".format(n=led+1,k='-'),
+				print ("{n:3d}{k}".format(n=led+1,k='-'), end =" ")
 			else:
-				print "{n:3d}{x} {m:3d}{y}".format(n=led+1,x='-',m=led+2,y='+'),
+				print ("{n:3d}{x} {m:3d}{y}".format(n=led+1,x='-',m=led+2,y='+'), end =" ")
 			if( led+1 < numLeds ):
 				ledData[led+1].posPin = pin
 			ledData[led].negPin = pin
@@ -152,24 +152,24 @@ for pin in range( numPins ):
 
 		numloops += 1
 
-print ""
-print ""
-print "Logic table  ",
+print ("")
+print ("")
+print ("Logic table  ", end =" ")
 
 for pin in range( numPins ):
-	print "{num:3d}".format(num=pin+1),
-	print "",
+	print ("{num:3d}".format(num=pin+1), end =" ")
+	print ("", end =" ")
 
 for led in range( numLeds ):
-	print ""
-	print "Led {num:3d}   >   ".format( num=led+1 ),
+	print ("")
+	print ("Led {num:3d}   >   ".format( num=led+1 ), end =" ")
 	for pin in range ( numPins ):
 		if( ledData[led].posPin == pin ):
-			print "HI  ",
+			print ("HI  ", end =" ")
 		elif( ledData[led].negPin == pin ):
-			print "LO  ",
+			print ("LO  ", end =" ")
 		else:
-			print "IN  ",
+			print ("IN  ", end =" ")
 
 # Output actual code for arduino
 #
@@ -178,14 +178,14 @@ for led in range( numLeds ):
 #  {2,1,0,2,2,2,2},
 #  };
 
-print ""
-print ""
-print "int numPins = "+str(numPins)+";"
-print "int numLeds = "+str(numLeds)+";"
-print "byte	ledPins[]["+str(numPins)+"] ={"
+print ("")
+print ("")
+print ("int numPins = "+str(numPins)+";")
+print ("int numLeds = "+str(numLeds)+";")
+print ("byte	ledPins[]["+str(numPins)+"] ={")
 for led in range( numLeds ):
 	line = ""
-	print "	{",
+	print ("	{", end =" ")
 	for pin in range ( numPins ):
 		if( ledData[led].posPin == pin ):
 			line += "1"
@@ -195,9 +195,9 @@ for led in range( numLeds ):
 			line += "2"
 		if( pin < numPins-1):
 			line += ","
-	print line,
-	print "},"
-print "	};"
+	print( line, end =" " )
+	print( "},")
+print( "	};")
 
 
 
